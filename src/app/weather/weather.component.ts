@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {WeatherService} from './weather.service';
-import {filter, map, pluck} from 'rxjs/operators';
-import {Observable} from 'rxjs';
 import {WeatherType} from './weatherType';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {setLoadingSpinner} from '../loading-spinner/shared/shared.actions';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-weather',
@@ -13,25 +14,36 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class WeatherComponent implements OnInit {
   forcastForm: FormGroup;
   forecast: WeatherType[] = [];
-  selectedDate?: WeatherType;
+  selectedDate?: string;
   weatherFiveDays: any = [];
   public errorMsg;
+  myCity: string;
 
-  constructor(private service: WeatherService) {
+  constructor(private service: WeatherService,
+              private store: Store,
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
+
     this.forcastForm = new FormGroup({
       forecastCity: new FormControl('')
     });
   }
 
   onSubmit(): void {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
+    this.store.dispatch(setLoadingSpinner({status: true}));
+    this.myCity = this.forcastForm.value.forecastCity;
+    this.clearField();
     this.service.getWeather(this.forcastForm.value.forecastCity).subscribe(
       data => this.fiveDays(data),
       err => this.errorMsg = err.message);
-    this.forcastForm.reset();
-    this.weatherFiveDays = [];
+    this.clearWeather();
+    this.store.dispatch(setLoadingSpinner({status: false}));
   }
 
 
@@ -41,7 +53,23 @@ export class WeatherComponent implements OnInit {
     }
   }
 
-  onSelect(date: WeatherType): void {
+  onSelect(date: string): void {
     this.selectedDate = date;
+  }
+
+  private clearField(): void {
+    this.errorMsg = '';
+    this.selectedDate = '';
+  }
+
+  private clearWeather(): void {
+    this.forcastForm.reset();
+    this.weatherFiveDays = [];
+  }
+
+  clearAll(): void {
+    this.clearField();
+    this.clearWeather();
+    this.myCity = '';
   }
 }

@@ -20,6 +20,12 @@
   padding-bottom: 15px;
 }
 
-/*.detail {*/
-/*  justify-content: center;*/
-/*}*/
+.parent {
+  justify-content: space-evenly;;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.button {
+  margin-top: 8px;
+}
