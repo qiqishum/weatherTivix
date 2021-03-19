@@ -11,7 +11,6 @@ import {appReducer} from './loading-spinner/shared/app.state';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {NgxSpinnerModule} from 'ngx-spinner';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {SpinnerComponent} from './loading-spinner/spinner/spinner.component';
 
@@ -28,7 +27,6 @@ import {SpinnerComponent} from './loading-spinner/spinner/spinner.component';
     ReactiveFormsModule,
     FormsModule,
     NoopAnimationsModule,
-    NgxSpinnerModule,
     EffectsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
