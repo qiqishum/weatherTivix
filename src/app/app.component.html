@@ -1,10 +1,17 @@
 
 <router-outlet></router-outlet>
 
-<ngx-spinner
-bdColor="rgba(0,0,0,0.8)"
-size="medium"
-color="#fff"
-type="square-jelly-box"
-[fullScreen]="true">
-<p style="color: white">Loading...</ngx-spinner>
+<!--<ngx-spinner *ngIf="showLoading | async"-->
+<!--bdColor="rgba(0,0,0,0.8)"-->
+<!--size="medium"-->
+<!--color="#fff"-->
+<!--type="square-jelly-box"-->
+<!--[fullScreen]="true">-->
+<!--<p style="color: white">Loading...</ngx-spinner>-->
+<!--<div class="ui segment" *ngIf="showLoading | async">-->
+<!--  <div class="ui active dimmer">-->
+<!--    <div class="ui massive text loader">Loading...</div>-->
+<!--  </div>-->
+
+<!--</div>-->
+<app-spinner *ngIf="showLoading | async"></app-spinner>

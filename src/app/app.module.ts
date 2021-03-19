@@ -13,11 +13,13 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {SpinnerComponent} from './loading-spinner/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
