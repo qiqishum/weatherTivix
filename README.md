@@ -1,5 +1,7 @@
 # WeatherTivix
 
+https://user-images.githubusercontent.com/47678835/111845090-95a81200-88da-11eb-803c-cc842d710d4d.png
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
 ## Development server
