@@ -1,0 +1,25 @@
+.form {
+  padding-bottom: 30px;
+}
+
+.cards{
+  margin-bottom: 15px;
+  justify-content: center;
+}
+.fiveday{
+  padding: 10px;
+  margin: 10px;
+  color: whitesmoke;
+  background-color: black;
+  border-radius: 5px;
+
+}
+
+.header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/*.detail {*/
+/*  justify-content: center;*/
+/*}*/

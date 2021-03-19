@@ -1,0 +1,62 @@
+<div class="container">
+  <h2 class="ui center aligned icon header">
+    <i class="circular sun icon"></i>
+    My Weather
+  </h2>
+<div class="ui form">
+  <form [formGroup]="forcastForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <input type="text" class="ui input inverted" placeholder="Search your city..." formControlName="forecastCity">
+    </div>
+    <button type="submit" class="ui button fluid secondary">Submit</button>
+  </form>
+
+  <h4 class="ui horizontal divider header">
+    <i class="star icon"></i>
+    Get Five Days Forecast
+  </h4>
+
+  <div class="ui five cards">
+    <div
+      class="center"
+      *ngFor="let d of weatherFiveDays"
+      [class.selected]="d === selectedDate"
+      (click)="onSelect(d)"
+
+    >
+    <div class="card fiveday">
+      <div class="image">
+        <img class="right floated mini ui image" src="http://openweathermap.org/img/wn/{{d.weather[0].icon}}@2x.png">
+      </div>
+      <div class="extra">
+        {{d.dt_txt | date }} 's weather
+      </div>
+    </div>
+  </div>
+  </div>
+  <div *ngIf="errorMsg">
+    <h2>Oops....Something's wrong. Please try again</h2>
+  </div>
+  <h4 class="ui horizontal divider header">
+    <i class="moon icon"></i>
+    Weather Details
+  </h4>
+
+  <div class="card detail">
+  <div *ngIf="selectedDate">
+
+    <h2>{{selectedDate.dt_txt | date}} 's Weather</h2>
+    <div><span>Description: </span>{{selectedDate.weather[0].description}}</div>
+    <div>
+      <img src="http://openweathermap.org/img/wn/{{selectedDate.weather[0].icon}}@2x.png" alt="">
+      <h4>Average Temp: {{selectedDate.main.temp}}</h4>
+      <h4>Max: {{selectedDate.main.temp_max}}</h4>
+      <h4>Min: {{selectedDate.main.temp_min}}</h4>
+      <h4>Humidity: {{selectedDate.main.humidity}}</h4>
+      <h4>Feels Like: {{selectedDate.main.feels_like }}</h4>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
