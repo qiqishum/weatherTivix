@@ -2,6 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {WeatherComponent} from './weather/weather.component';
+import {SpinnerComponent} from './loading-spinner/spinner/spinner.component';
+import {provideMockStore} from '@ngrx/store/testing';
+import {initialState} from './loading-spinner/shared/shared.state';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,7 +15,12 @@ describe('AppComponent', () => {
         BrowserAnimationsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        WeatherComponent,
+        SpinnerComponent
+      ],
+      providers: [
+        provideMockStore({initialState})
       ],
     }).compileComponents();
   });
@@ -26,12 +35,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('weatherTivix');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('weatherTivix app is running!');
   });
 });

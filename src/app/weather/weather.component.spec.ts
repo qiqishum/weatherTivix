@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WeatherComponent } from './weather.component';
+import {provideMockStore} from '@ngrx/store/testing';
+import {initialState} from '../loading-spinner/shared/shared.state';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('WeatherComponent', () => {
   let component: WeatherComponent;
@@ -8,7 +11,11 @@ describe('WeatherComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeatherComponent ]
+      declarations: [ WeatherComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [
+        provideMockStore({initialState})
+      ]
     })
     .compileComponents();
   });
